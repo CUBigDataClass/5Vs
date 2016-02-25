@@ -1,4 +1,4 @@
-	# World Emotions
+# World Emotions
 
 #Project objective:
 	Real-time visualization of people emotions around the world through sentiment analysis of Twitter data
