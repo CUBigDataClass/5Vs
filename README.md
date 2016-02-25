@@ -1,4 +1,4 @@
-# World Emotions
+	# World Emotions
 
 #Project objective:
 	Real-time visualization of people emotions around the world through sentiment analysis of Twitter data
@@ -11,7 +11,7 @@
 	Tahani Almanie
 
 #Course:
-	Big Data | Spring 2016
+	Big Data | Spring 2016 | University of Colorado Boulder
 
 #Instructor:
 	Greg Greenstreet
