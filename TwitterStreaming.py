@@ -4,10 +4,10 @@ from tweepy import Stream
 from tweepy.streaming import StreamListener
 
 # Consumer keys and access tokens, used for OAuth
-consumer_key = '***'
-consumer_secret = '***'
-access_token = '***'
-access_secret = '***'
+consumer_key = ''
+consumer_secret = ''
+access_token = ''
+access_secret = ''
 
 class Listener(StreamListener):
  
@@ -37,4 +37,4 @@ api = tweepy.API(auth)
 
 # Twitter Streaming
 twitter_stream = Stream(auth, Listener())
-twitter_stream.filter(track=['happy'])
+twitter_stream.filter(track=['happy',':)'], locations = [-122.75,36.8,-121.75,37.8], languages=['en'])
