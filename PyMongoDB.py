@@ -9,6 +9,7 @@ consumer_secret = ''
 access_token = ''
 access_secret = ''
 
+
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
@@ -22,7 +23,10 @@ class CustomStreamListener(tweepy.StreamListener):
         self.db = pymongo.MongoClient().test
     
     def on_data(self, tweet):
-        self.db.tweets.insert(json.loads(tweet))
+        jd = json.loads(tweet)
+        if jd.has_key('created_at') :
+            self.db.tweets.insert( { 'created_at' : jd['created_at'], 'text' : jd['text'], 'coordinates' : jd['coordinates'] } )
+
     
     def on_error(self, status_code):
         return True # Don't kill the stream
