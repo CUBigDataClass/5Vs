@@ -11,14 +11,14 @@
 	Tahani Almanie
 
 #Course:
-	Big Data | Spring 2016 | University of Colorado Boulder
+	Big Data | Spring 2016 | University of Colorado Boulder | Professor: Greg Greenstreet
 
-#Instructor:
-	Greg Greenstreet
 
 #Project Tools:
-	Data Source: Twitter API
-	Python library for accessing the Twitter API: Tweepy
+	Data Source: Twitter Streaming API
 	NoSQL Database: MongoDB
 	Programming Language: Python 2.7
-	Data processing Engine: Apache Spark
+	Python library for accessing Twitter API: Tweepy
+	Data processing Environment: Apache Spark
+	Cloud Computing Services: AWS (Amazon Web Services)
+	
