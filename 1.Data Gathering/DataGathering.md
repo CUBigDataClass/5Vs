@@ -1,11 +1,11 @@
-# Data Gathering
+## Data Gathering
 
-# Tools required:
+#### Tools required:
 	- Twitter Streaming API
     - Python
     - Tweepy
 
-# Steps required:
+#### Steps required:
     * create a Twitter app and get access tokens
     
     * install python 2.7

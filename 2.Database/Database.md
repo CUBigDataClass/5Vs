@@ -1,13 +1,13 @@
-# Database
+## Database
     
-# Tools required:
+#### Tools required:
 	- Twitter Streaming API
     - Python
     - Tweepy
     - mongodb
     - pymongo
 
-# Steps required:
+#### Steps required:
     * create a Twitter app and get access tokens
     
     * install python 2.7
