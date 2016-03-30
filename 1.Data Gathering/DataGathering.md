@@ -1,4 +1,4 @@
-## Data Gathering
+### Data Gathering
 
 #### Tools required:
 	- Twitter Streaming API
