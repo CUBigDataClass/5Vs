@@ -1,26 +1,26 @@
 # Database
     
-#Tools required:
-	Twitter Streaming API
-    Python
-    Tweepy
-    mongodb
-    pymongo
+# Tools required:
+	- Twitter Streaming API
+    - Python
+    - Tweepy
+    - mongodb
+    - pymongo
 
-#Steps required:
-    create a Twitter app and get access tokens
+# Steps required:
+    * create a Twitter app and get access tokens
     
-    install python 2.7
+    * install python 2.7
     
-    install tweepy ($sudo pip install tweepy)
+    * install tweepy ($sudo pip install tweepy)
     
-    install mongoDB http://bit.ly/1Xpkq1e
+    * install mongoDB http://bit.ly/1Xpkq1e
 	
-	install pymongo ($sudo pip install pymongo)
+	* install pymongo ($sudo pip install pymongo)
 	
-	run the mongod server then run this program as: $ python TweetsMongoDB.py and it will keep running until the user presses ctrl+c to exit
+	* run the mongod server then run this program as: $ python TweetsMongoDB.py and it will keep running until the user presses ctrl+c to exit
 	
-	to see the output: open the mongo shell then type: $use twitterDB  $db.emotions.find().pretty()
+	* to see the output: open the mongo shell then type: $use twitterDB  $db.emotions.find().pretty()
     don't forget to put your own Twitter access tokens before running the program.
 
 

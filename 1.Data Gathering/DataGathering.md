@@ -1,23 +1,21 @@
 # Data Gathering
 
-#Tools required:
-	Twitter Streaming API
-    Python
-    Tweepy
+# Tools required:
+	- Twitter Streaming API
+    - Python
+    - Tweepy
 
-#Steps required:
-    create a Twitter app and get access tokens
-    install python 2.7
+# Steps required:
+    * create a Twitter app and get access tokens
     
-    install tweepy ($sudo pip install tweepy)
+    * install python 2.7
     
-    run the first program as: $ python TweetStreaming.py and you will get an output file named StreamTest.json includes current tweets contain the "Happy" word.
+    * install tweepy ($sudo pip install tweepy)
     
-    run second program as: $ python StreamByLocation.py and you will get an output file named TweetsOutput.json includes current tweets contain the "Happy" word filtered by certain cities.
+    * run the first program as: $ python TweetStreaming.py and you will get an output file named StreamTest.json includes current tweets contain the "Happy" word.
     
-    put your own Twitter access tokens before running the programs.
+    * run second program as: $ python StreamByLocation.py and you will get an output file named TweetsOutput.json includes current tweets contain the "Happy" word filtered by certain cities.
     
-    press ctrl+c to exit.
-
-
-	
+    * put your own Twitter access tokens before running the programs.
+    
+    * press ctrl+c to exit.
