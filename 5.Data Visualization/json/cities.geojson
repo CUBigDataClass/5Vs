@@ -1,0 +1,191 @@
+{
+	"type": "FeatureCollection",
+	"features": [{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-74, 40.717]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "New_York_City",
+			"city": "New York City"
+		},
+		"id": "New York City"
+	}, {
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-0.117, 51.5]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "London",
+			"city": "London"
+		},
+		"id": "London"
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-118.25, 34.05]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Los_Angeles",
+			"city": "Los Angeles"
+		},
+		"id": "Los Angeles"
+	}, {
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-87.617, 41.867]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Chicago",
+			"city": "Chicago"
+		},
+		"id": "Chicago"
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-96.8, 32.767]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Dallas",
+			"city": "Dallas"
+		},
+		"id": "Dallas"
+	}, {
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-75.167, 39.95]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Philadelphia",
+			"city": "Philadelphia"
+		},
+		"id": "Philadelphia"
+	}, {
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-2.233, 53.467]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Manchester",
+			"city": "Manchester"
+		},
+		"id": "Manchester"
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-95.367, 29.75]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Houston",
+			"city": "Houston"
+		},
+		"id": "Houston"
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-77.033, 38.883]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Washington,_D.C.",
+			"city": "Washington"
+		},
+		"id": "Washington"
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-79.383, 43.65]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Toronto",
+			"city": "Toronto"
+		},
+		"id": "Toronto"
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-71.05, 42.35]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Boston",
+			"city": "Boston"
+		},
+		"id": "Boston"
+	}, {
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-122.417, 37.767]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "San_Francisco",
+			"city": "San Francisco"
+		},
+		"id": "San Francisco"
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-84.383, 33.75]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Atlanta",
+			"city": "Atlanta"
+		},
+		"id": "Atlanta"
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [151.2, -33.85]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Sydney",
+			"city": "Sydney"
+		},
+		"id": "Sydney"
+	}, {
+		"geometry": {
+			"type": "Point",
+			"coordinates": [144.95, -37.8]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Melbourne",
+			"city": "Melbourne"
+		},
+		"id": "Melbourne"
+	}, {
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-4.25, 55.85]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Glasgow",
+			"city": "Glasgow"
+		},
+		"id": "Glasgow"
+	},{
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-6.267, 53.333]
+		},
+		"type": "Feature",
+		"properties": {
+			"wikipedia": "Dublin",
+			"city": "Dublin"
+		},
+		"id": "Dublin"
+}]
+}
