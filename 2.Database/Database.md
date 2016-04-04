@@ -1,5 +1,6 @@
 ### Database
-    
+    Store a stream of tweets filtered by certain locations in mongoDB
+
 #### Tools required:
 	- Twitter Streaming API
     - Python
@@ -12,16 +13,17 @@
     
     * install python 3
     
-    * install tweepy ($sudo pip install tweepy)
+    * install tweepy $ sudo pip3 install tweepy
     
     * install mongoDB http://bit.ly/1Xpkq1e
 	
-	* install pymongo ($sudo pip install pymongo)
+	* install pymongo $ sudo pip3 install pymongo
 	
-	* run the mongod server then run this program as: $ python TweetsMongoDB.py and it will keep running until the user presses ctrl+c to exit
+	* run the mongod server then run this program as: $ python3 TweetsMongoDB.py and it will keep running until the user presses ctrl+c to exit
 	
-	* to see the output: open the mongo shell then type: $use twitterDB  $db.emotions.find().pretty()
-    don't forget to put your own Twitter access tokens before running the program.
+	* to see the output: open the mongo shell then type: $ use twitterDB  $ db.emotions.find().pretty()
+    
+    * don't forget to put your own Twitter access tokens before running the program.
 
 
 	

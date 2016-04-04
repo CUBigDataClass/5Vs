@@ -4,7 +4,7 @@ from tweepy import Stream
 from tweepy.streaming import StreamListener
 import json
 
-# Download / install python and tweepy (sudo pip install tweepy)
+# Download / install python and tweepy $ sudo pip3 install tweepy
 # Run as: python3 StreamByLocation.py
 # It will keep running until the user presses ctrl+c to exit
 # All output stored to TweetsOutput.json (one tweet  per line)

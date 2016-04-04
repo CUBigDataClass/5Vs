@@ -1,11 +1,16 @@
 import tweepy
 import json
 import pymongo
+import nltk
+from nltk.tokenize import TweetTokenizer
+from nltk.stem.porter import PorterStemmer
+import operator
 
 # install python 3
 # install tweepy $ sudo pip3 install tweepy
 # install mongoDB http://bit.ly/1Xpkq1e
 # install pymongo $ sudo pip3 install pymongo
+# install NLTK $ sudo pip3 install -U nltk
 # run the mongod server then run this program as: python3 TweetsMongoDB.py
 # it will keep running until the user presses ctrl+c to exit
 # to see the output: open the mongo shell then type: $ use twitterDB  $ db.emotions.find().pretty()
@@ -21,6 +26,38 @@ auth.set_access_token(access_token, access_secret)
 # create the actual interface, using authentication
 api = tweepy.API(auth)
 
+happyList=['funny','happy','cheerful','alive','excited','joyful','carefree', 'motivated', 'playful', 'delighted','glad','lucky',':)','=)',':-)',':D',':3','😀','🎉']
+sadList=['sad','grief','lonely','disappointed','hopeless','depressed','miserable','lost','bored','regretful',':(','=(',':^(','😩','😭']
+angerList=['angry','furious','annoyed','frustrated','enraged','irritable','resentful','mad','raging','livid','bitter','seething','>:S','>:',':@','😤','😡']
+fearList=['panicked','restless','anxious','frantic','nervous','hesitant','terrified','tense','timid','afraid','frightened','worried','threatened','fearful','horrified','shaky','scary',':-o',':$','o_O']
+
+def token_words(text):
+    tknzr = TweetTokenizer()
+    tokens=tknzr.tokenize(text)
+    return tokens
+
+def stem_words(tokens):
+    st = PorterStemmer()
+    stemmed_words= [st.stem(str.lower(word)) for word in tokens]
+    return stemmed_words
+
+def classify_tweet(stemmed_tokens):
+    emotionCnt={'Happy':0,'Sad':0,'Anger':0,'Fear':0}
+    
+    for token in stemmed_tokens:
+        if token in st_happyList: emotionCnt['Happy'] +=1
+        if token in st_sadList: emotionCnt['Sad'] +=1
+        if token in st_angerList: emotionCnt['Anger'] +=1
+        if token in st_fearList: emotionCnt['Fear'] +=1
+    print('happy count:',emotionCnt['Happy'])
+    print('sad count:',emotionCnt['Sad'])
+    print('anger count:',emotionCnt['Anger'])
+    print('fear count:',emotionCnt['Fear'])
+
+    max_emotion=max(emotionCnt.keys(), key=(lambda k: emotionCnt[k]))
+    tweet_emotion= 'Neutural' if max(emotionCnt.values()) == 0 else max_emotion
+
+    return tweet_emotion
 
 class Listener(tweepy.StreamListener):
     
@@ -37,9 +74,22 @@ class Listener(tweepy.StreamListener):
     def on_data(self, data):   
         #convert the tweet data to a json object          
         tweet=json.loads(data)                   
-        #insert only the interested tweet data into the (emotions) collection
-        self.db.emotions.insert( { 'created_at' : tweet['created_at'], 'text' : tweet['text'], 'location_name' : tweet['place']['name'], 'location_coordinates' : tweet['place']['bounding_box']['coordinates'] } )
         
+        # get a list of tokens from the tweet text
+        tokens=token_words(tweet['text'])
+        print(tokens)
+
+        # apply the stemmer on the tokens list
+        stemmed_tokens=stem_words(tokens)
+        print(stemmed_tokens)
+
+        #classify the tweet into one of the emotion categories
+        tweet_emotion=classify_tweet(stemmed_tokens)
+        print(tweet_emotion)
+        
+        #insert only the interested tweet data into the (emotions) collection
+        self.db.emotions.insert( { 'created_at' : tweet['created_at'], 'text' : tweet['text'], 'location_name' : tweet['place']['name'], 'location_coordinates' : tweet['place']['bounding_box']['coordinates'], 'tweet_emotion' : tweet_emotion } )
+
     def on_error(self, status):
         print ("ERROR")
         print (status)
@@ -48,10 +98,14 @@ class Listener(tweepy.StreamListener):
     def on_timeout(self):
         print ("Timeout")
         return True         #To continue listening
-        
 
 if __name__ == '__main__':
     try:
+        st_happyList=stem_words(happyList)
+        st_sadList=stem_words(sadList)
+        st_angerList=stem_words(angerList)
+        st_fearList=stem_words(fearList)
+
         # create the listener and connect to the Twitter stream
         twitter_stream = tweepy.streaming.Stream(auth, Listener(api))
 
