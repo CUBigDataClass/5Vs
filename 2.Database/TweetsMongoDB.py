@@ -38,7 +38,7 @@ class Listener(tweepy.StreamListener):
         #convert the tweet data to a json object          
         tweet=json.loads(data)                   
         #insert only the interested tweet data into the (emotions) collection
-        self.db.emotions.insert( { 'created_at' : tweet['created_at'], 'text' : tweet['text'], 'location' : tweet['place'] } )
+        self.db.emotions.insert( { 'created_at' : tweet['created_at'], 'text' : tweet['text'], 'location_name' : tweet['place']['name'], 'location_coordinates' : tweet['place']['bounding_box']['coordinates'] } )
         
     def on_error(self, status):
         print ("ERROR")
