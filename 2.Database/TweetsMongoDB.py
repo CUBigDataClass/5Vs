@@ -2,7 +2,7 @@ import tweepy
 import json
 import pymongo
 
-# install python 2.7
+# install python 3
 # install tweepy (sudo pip install tweepy)
 # install mongoDB http://bit.ly/1Xpkq1e
 # install pymongo (sudo pip install pymongo)

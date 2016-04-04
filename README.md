@@ -17,8 +17,8 @@
 ## Project Tools:
 	* Data Source: Twitter Streaming API
 	* NoSQL Database: MongoDB
-	* Programming Language: Python 2.7
-	* Python library for accessing Twitter API: Tweepy
+	* Programming Language: Python 3
+	* Web Framework: Django
 	* Data processing Environment: Apache Spark
 	* Cloud Computing Services: AWS (Amazon Web Services)
 	

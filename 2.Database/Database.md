@@ -10,7 +10,7 @@
 #### Steps required:
     * create a Twitter app and get access tokens
     
-    * install python 2.7
+    * install python 3
     
     * install tweepy ($sudo pip install tweepy)
     
