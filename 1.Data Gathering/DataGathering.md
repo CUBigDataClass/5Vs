@@ -3,19 +3,19 @@
 
 #### Tools required:
 	- Twitter Streaming API
-    - Python 3
+    - Python 
     - Tweepy
 
 #### Steps required:
     * create a Twitter app and get access tokens
     
-    * install python 3
+    * install python 2.7
     
-    * install tweepy $ sudo pip3 install tweepy
+    * install tweepy $ sudo pip install tweepy
     
-    * run the first program as: $ python3 TweetStreaming.py and you will get an output file named StreamTest.json includes current tweets contain the "Happy" word.
+    * run the first program as: $ python TweetStreaming.py and you will get an output file named StreamTest.json includes current tweets contain the "Happy" word.
     
-    * run second program as: $ python3 StreamByLocation.py and you will get an output file named TweetsOutput.json includes current tweets filtered by certain cities.
+    * run second program as: $ python StreamByLocation.py and you will get an output file named TweetsOutput.json includes current tweets filtered by certain cities.
     
     * put your own Twitter access tokens before running the programs.
     

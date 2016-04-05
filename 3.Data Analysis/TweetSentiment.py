@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import tweepy
 import json
 import pymongo
@@ -6,12 +7,12 @@ from nltk.tokenize import TweetTokenizer
 from nltk.stem.porter import PorterStemmer
 import operator
 
-# install python 3
-# install tweepy $ sudo pip3 install tweepy
+# install python 2.7
+# install tweepy $ sudo pip install tweepy
 # install mongoDB http://bit.ly/1Xpkq1e
-# install pymongo $ sudo pip3 install pymongo
-# install NLTK $ sudo pip3 install -U nltk
-# run the mongod server then run this program as: python3 TweetsMongoDB.py
+# install pymongo $ sudo pip install pymongo
+# install NLTK $ sudo pip install -U nltk
+# run the mongod server then run this program as: python TweetsMongoDB.py
 # it will keep running until the user presses ctrl+c to exit
 # to see the output: open the mongo shell then type: $ use twitterDB  $ db.emotions.find().pretty()
 
@@ -26,10 +27,10 @@ auth.set_access_token(access_token, access_secret)
 # create the actual interface, using authentication
 api = tweepy.API(auth)
 
-happyList=['funny','happy','cheerful','alive','excited','joyful','carefree', 'motivated', 'playful', 'delighted','glad','lucky',':)','=)',':-)',':D',':3','😀','🎉']
-sadList=['sad','grief','lonely','disappointed','hopeless','depressed','miserable','lost','bored','regretful',':(','=(',':^(','😩','😭']
-angerList=['angry','furious','annoyed','frustrated','enraged','irritable','resentful','mad','raging','livid','bitter','seething','>:S','>:',':@','😤','😡']
-fearList=['panicked','restless','anxious','frantic','nervous','hesitant','terrified','tense','timid','afraid','frightened','worried','threatened','fearful','horrified','shaky','scary',':-o',':$','o_O']
+happyList=['funny','happy','cheerful','alive','excited','joyful','carefree', 'motivated', 'playful', 'delighted','glad','lucky',':)','=)',':-)',':D',':3',u'\ude0d']
+sadList=['sad','grief','lonely','disappointed','hopeless','depressed','miserable','lost','bored','regretful',':(','=(',':^(',u'\ude29']
+angerList=['angry','furious','annoyed','frustrated','enraged','irritable','resentful','mad','raging','livid','bitter','seething','>:S','>:',':@',u'\ude20']
+fearList=['panicked','restless','anxious','frantic','nervous','hesitant','terrified','tense','timid','afraid','frightened','worried','threatened','fearful','horrified','shaky','scary',':-o',':$','o_O',u'\ude28']
 
 def token_words(text):
     tknzr = TweetTokenizer()
@@ -38,7 +39,7 @@ def token_words(text):
 
 def stem_words(tokens):
     st = PorterStemmer()
-    stemmed_words= [st.stem(str.lower(word)) for word in tokens]
+    stemmed_words= [st.stem(word) for word in tokens]
     return stemmed_words
 
 def classify_tweet(stemmed_tokens):
@@ -75,9 +76,10 @@ class Listener(tweepy.StreamListener):
         #convert the tweet data to a json object          
         tweet=json.loads(data)                   
         
-        # get a list of tokens from the tweet text
-        tokens=token_words(tweet['text'])
+        # get a list of lowercase tokens from the tweet text
+        tokens=token_words(tweet['text'].lower())
         print(tokens)
+        #print([token.encode(encoding='UTF-8') for token in tokens])
 
         # apply the stemmer on the tokens list
         stemmed_tokens=stem_words(tokens)

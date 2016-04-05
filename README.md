@@ -17,7 +17,7 @@
 ## Project Tools:
 	* Data Source: Twitter Streaming API
 	* NoSQL Database: MongoDB
-	* Programming Language: Python 3
+	* Programming Language: Python 2.7
 	* Web Framework: Django
 	* Data processing Environment: Apache Spark
 	* Cloud Computing Services: AWS (Amazon Web Services)
