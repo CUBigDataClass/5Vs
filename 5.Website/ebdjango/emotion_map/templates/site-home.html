@@ -1,0 +1,55 @@
+{% extends "site-base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <!-- Put your page content here! -->
+
+<div id='map'></div>
+<script>
+   mapboxgl.accessToken = 'pk.eyJ1IjoiYnVzdW5raW05NiIsImEiOiJjaWx4ZDI1Y24wN3lxdmdrc3NkeHNqbzN5In0.oI1GbKPDTensdmbB-XcF_g';
+    var map = new mapboxgl.Map
+    ({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v8',
+        center: [-96,37.8],
+        zoom: 1.4
+    });
+
+    map.on('style.load', function()
+     {
+        map.addSource("cities",
+        {
+            "type": "geojson",
+            "data": "{%static 'cities.geojson'%}"
+        });
+
+
+     var layers =
+     [
+        ["happy", "yellow"],
+        ["sad", "blue"],
+        ["disgust", "green"],
+        ["surprise", "orange"],
+        ["fear", "red"]
+     ];
+
+   layers.forEach(function (layer, i)
+   {
+           map.addLayer({
+                 "id": "cities-"+layer[0], // An id for this layer
+                 "type": "circle", // As a point layer, we need style a symbol for each point.
+                 "source": "cities", // The source layer we defined above
+                 "paint": {
+                     "circle-radius": 10,
+                     "circle-color": layer[1],
+                      "circle-opacity": 0.8,
+                 },
+                 "filter": ["==", "mood", layer[0]]
+               });
+    });
+});
+</script>
+
+
+{% endblock %}
