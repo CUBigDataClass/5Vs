@@ -1,7 +1,8 @@
-### Connect to Amazon EC2 instance: You can apply one of the following ways:
+### Connect to Amazon EC2 instance: 
+You can apply one of the following ways:
 
 
-#### Connecting to your instance using a **web browser**:
+#### First: Connecting to your instance using a web browser:
 ##### Steps applied:
 	1. From the Amazon EC2 console, choose Instances in the navigation pane.
 
@@ -23,14 +24,12 @@
 
 	8. A window opens and you are connected to your instance.
 
-	9. to update the instance software, write $ sudo yum update
-
-**Note**
-	Chrome prevents the in-browser Java SSH client from loading. You need to use Firefox, Internet Explorer 9 or higher, or Safari to connect to SSH to your EC2 instances.
+	**Note:**
+		Chrome prevents the in-browser Java SSH client from loading. You need to use Firefox, Internet Explorer 9 or higher, or Safari to connect to SSH to your EC2 instances.
 
 
 
-#### Connecting to your instance using **SSH**:
+#### Second: Connecting to your instance using SSH:
 ##### Steps applied:
 	1. Open an SSH client. 
 
@@ -60,8 +59,6 @@
 
 	6. Now you are connected to your instance.
 
-	7. To transfer a file 'SampleFile.txt' from your local computer to the instance, use SCP:
-		$ scp -i ~/path/5Vs.pem SampleFile.txt ec2-user@ec2-52-10-133-241.us-west-2.compute.amazonaws.com:~
 
 
 
