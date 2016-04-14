@@ -32,7 +32,7 @@ api = tweepy.API(auth)
 def createEmotionList(key,matrix):
     emotionlist=[]
     for row in matrix:
-        emotionlist.append(row[key])
+        emotionlist.append(row[key].decode('unicode_escape'))
     return emotionlist
 
 # This function is to get a list of tokens from the tweet text
@@ -76,9 +76,11 @@ class Listener(tweepy.StreamListener):
         super(tweepy.StreamListener, self).__init__()
         self.api = api
         # create an instance of the Mongodb client with a connection to our database on Mongolab.
+        #client = pymongo.MongoClient()
         client = pymongo.MongoClient("ds019980.mlab.com",19980)
         
         # create a database called worldemotion
+        #self.db=client['twitterDB']  
         self.db=client['worldemotion']  
         
         # MongoLab has user authentication
@@ -88,7 +90,7 @@ class Listener(tweepy.StreamListener):
     def on_data(self, data):   
         #convert the tweet data to a json object          
         tweet=json.loads(data)                   
-        
+
         # get a list of lowercase tokens from the tweet text
         tokens=token_words(tweet['text'].lower())
         print(tokens)
@@ -98,11 +100,11 @@ class Listener(tweepy.StreamListener):
         print(stemmed_tokens)
 
         # to encode the generated tokens using UTF-8 encoding
-        utfTokens=[token.encode(encoding='UTF-8') for token in stemmed_tokens]
-        print(utfTokens)
+        #utfTokens=[token.encode(encoding='UTF-8') for token in stemmed_tokens]
+        #print(utfTokens)
 
         # classify the tweet into one of the emotion categories
-        tweet_emotion=classify_tweet(utfTokens)
+        tweet_emotion=classify_tweet(stemmed_tokens)
         print(tweet_emotion)
         
         # insert only the interested tweet data into the (emotions) collection
