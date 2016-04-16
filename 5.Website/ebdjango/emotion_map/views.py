@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
+import pymongo
 
 from .models import Greeting
 
@@ -10,7 +12,30 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'site-about.html')
+     # create an instance of the Mongodb client with a connection to our database on Mongolab.
+    client = pymongo.MongoClient("ds019980.mlab.com",19980)
+
+    # create a database called worldemotion
+    db=client['worldemotion']
+
+    #access the collection
+    collection=db['emotions']
+
+    # MongoLab has user authentication
+    db.authenticate("5Vs", "bigdata2016")
+
+    # just get the first one in the collection for testing
+    p = collection.find()
+
+    locations = {}
+    for tweet in p:
+        locations.update({tweet['location_name']:tweet['tweet_emotion']})
+
+    template = loader.get_template('site-about.html')
+    context = {
+        'locations': locations
+    }
+    return HttpResponse(template.render(context, request))
 
 def US(request):
     return render(request, 'US.html')
