@@ -27,3 +27,6 @@
 	* to see the output: open the mongo shell then type: $ use twitterDB  $ db.emotions.find().pretty()
     
     * don't forget to put your own Twitter access tokens before running the program.
+
+    * To run Emotions Classifier or CountriesEmotion, no need to install mongodb on you local machine. Their code will use mongodb on mongolab to store data. To connect to the database , open your terminal and type:
+            $ mongo ds019980.mlab.com:19980/worldemotion -u <dbuser> -p <dbpassword>
