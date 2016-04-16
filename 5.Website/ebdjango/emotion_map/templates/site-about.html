@@ -7,6 +7,11 @@
 
          <h3>The Emotion Map</h3>
     <p>This project was developed for the Spring 2016 section of Big Data, a course offered at University of Colorado Boulder</p>
+
+        <h3>Testing Datbase Access (get one tweet from collection)</h3>
+        {%for location, mood in locations.items%}
+        <p>{{location }} was <strong>{{mood}}</strong> </p>
+        {%endfor%}
     </div>
 
 

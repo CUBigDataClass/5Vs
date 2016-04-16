@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../.idea/5Vs.iml" filepath="$PROJECT_DIR$/../../.idea/5Vs.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ebdjango.iml" filepath="$PROJECT_DIR$/.idea/ebdjango.iml" />
     </modules>
   </component>

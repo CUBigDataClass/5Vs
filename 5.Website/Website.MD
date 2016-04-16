@@ -16,3 +16,12 @@
 
 	* server should be started and exist at http://127.0.0.1:8000/
     
+####Steps to deploy to remote:
+    * (again, start from 5Vs/5.Website)
+    
+    * source eb-virt/bin/activate
+    
+    * pip freeze > requirements.txt (Requirements.txt lets AWS know what python libraries are needed. If no new libraries have been added, this step can be skipped.)
+    
+    * sudo pip install awsebcli
+    

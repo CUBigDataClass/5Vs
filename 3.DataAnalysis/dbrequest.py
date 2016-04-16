@@ -17,9 +17,9 @@ p = collection.find()
 
 locations = {}
 for tweet in p:
-    locations.update({tweet['location_name']:tweet['tweet_emotion']})
+    locations.update({tweet['location_name']:(tweet['tweet_emotion'], tweet['created_at'])})
 
 for l in locations:
-    print l, locations[l]
+    print l, locations[l][1], locations[l][0]
 
 
