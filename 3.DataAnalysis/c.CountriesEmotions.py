@@ -10,6 +10,7 @@ from nltk.tokenize import TweetTokenizer
 from nltk.stem.porter import PorterStemmer
 import operator
 import csv
+from senti_classifier import senti_classifier
 
 # install python 2.7
 # install tweepy, $ sudo pip install tweepy
@@ -19,11 +20,14 @@ import csv
 # it will keep running until the user presses ctrl+c to exit
 # to see the output, open the terminal and type $ mongo ds019980.mlab.com:19980/worldemotion -u <dbuser> -p <dbpassword>
 # in the opened mongo shell type: $ use worldemotion  $ db.emotions.find().pretty()
+# download senti_classifier from this url https://github.com/kevincobain2000/sentiment_classifier/tree/master/src/senti_classifier
+# then install it, sudo python setup.py install
 
 consumer_key = '***'
 consumer_secret = '***'
 access_token = '***'
 access_secret = '***'
+
 
 # use consumer keys and access tokens for authentication
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -51,7 +55,10 @@ def stem_words(tokens):
     return stemmed_words
 
 #This function is to classify the tweet into one of the emotion categories
-def classify_tweet(stemmed_tokens):
+def classify_tweet(stemmed_tokens, sentences):
+    pos_score, neg_score = senti_classifier.polarity_scores(sentences)
+    print pos_score, neg_score
+
     emotionCnt={'Happy':0,'Sad':0,'Anger':0,'Fear':0,'Surprise':0,'Disgust':0}  
     
     for token in stemmed_tokens:
@@ -67,9 +74,21 @@ def classify_tweet(stemmed_tokens):
     print('fear count:',emotionCnt['Fear'])
     print('surprise count:',emotionCnt['Surprise'])
     print('disgust count:',emotionCnt['Disgust'])
-    
+
     max_emotion=max(emotionCnt.keys(), key=(lambda k: emotionCnt[k]))
-    tweet_emotion= 'Neutural' if max(emotionCnt.values()) == 0 else max_emotion
+    if max(emotionCnt.values()) == 0 :
+        tweet_emotion= 'Neutural' 
+    elif pos_score >= neg_score:
+        if max_emotion =='Happy' or max_emotion=='Surprise':
+            tweet_emotion = max_emotion
+        else:
+            tweet_emotion= 'Neutural' 
+    else: 
+        if max_emotion =='Anger' or max_emotion=='Fear' or max_emotion=='Disgust' or max_emotion=='Sad' or max_emotion=='Surprise':
+            tweet_emotion = max_emotion
+        else:
+            tweet_emotion = 'Neutural' 
+
     return tweet_emotion
 
 class Listener(tweepy.StreamListener):
@@ -80,8 +99,11 @@ class Listener(tweepy.StreamListener):
         # create an instance of the Mongodb client with a connection to our database on Mongolab.
         client = pymongo.MongoClient("ds019980.mlab.com",19980)
         #client = pymongo.MongoClient()
+        #client = pymongo.MongoClient()
         # create a database called worldemotion
-        self.db=client['worldemotion']  
+        self.db=client['worldemotion'] 
+        #self.db=client['twitterDB']  
+ 
         # MongoLab has user authentication
         self.db.authenticate("***", "***")
 
@@ -90,6 +112,10 @@ class Listener(tweepy.StreamListener):
         #convert the tweet data to a json object          
         tweet=json.loads(data)                   
         print (tweet['text'])
+
+        sentences = []
+        sentences.append(tweet['text'].lower()) 
+        print(sentences)
         
         # get a list of lowercase tokens from the tweet text
         tokens=token_words(tweet['text'].lower())
@@ -100,7 +126,7 @@ class Listener(tweepy.StreamListener):
         print(stemmed_tokens)
 
         # classify the tweet into one of the emotion categories
-        tweet_emotion=classify_tweet(stemmed_tokens)
+        tweet_emotion=classify_tweet(stemmed_tokens, sentences)
         print(tweet_emotion)
         
         # insert only the interested tweet data into the (emotions) collection
