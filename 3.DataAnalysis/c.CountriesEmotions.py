@@ -69,18 +69,16 @@ def classify_tweet(stemmed_tokens):
     tweet_emotion= 'Neutural' if max(emotionCnt.values()) == 0 else max_emotion
     return tweet_emotion
 
-
 class Listener(tweepy.StreamListener):
     
     def __init__(self, api):
         super(tweepy.StreamListener, self).__init__()
         self.api = api
-        # create an instance of the Mongodb client with a connection to our database on Mongolab
+        # create an instance of the Mongodb client with a connection to our database on Mongolab.
         client = pymongo.MongoClient("ds019980.mlab.com",19980)
-        
+        #client = pymongo.MongoClient()
         # create a database called worldemotion
         self.db=client['worldemotion']  
-        
         # MongoLab has user authentication
         self.db.authenticate("***", "***")
 
@@ -88,7 +86,8 @@ class Listener(tweepy.StreamListener):
     def on_data(self, data):   
         #convert the tweet data to a json object          
         tweet=json.loads(data)                   
-
+        print (tweet['text'])
+        
         # get a list of lowercase tokens from the tweet text
         tokens=token_words(tweet['text'].lower())
         print(tokens)
@@ -96,10 +95,6 @@ class Listener(tweepy.StreamListener):
         # apply the stemmer on the tokens list
         stemmed_tokens=stem_words(tokens)
         print(stemmed_tokens)
-
-        # to encode the generated tokens using UTF-8 encoding
-        #utfTokens=[token.encode(encoding='UTF-8') for token in stemmed_tokens]
-        #print(utfTokens)
 
         # classify the tweet into one of the emotion categories
         tweet_emotion=classify_tweet(stemmed_tokens)
@@ -118,27 +113,30 @@ class Listener(tweepy.StreamListener):
         print ("Timeout")
         return True         #To continue listening
 
+
 if __name__ == '__main__':
-    try:
-        # to create a matrix of emotion lists from emotionsWords.csv file
-        with open('EmotionsWords.csv','rU') as csvfile:
-            emotionsMatrix = list(csv.DictReader(csvfile))
-        csvfile.close()
+    # to create a matrix of emotion lists from EmotionsWords.csv file
+    with open('EmotionsWords.csv','rU') as csvfile:
+        emotionsMatrix = list(csv.DictReader(csvfile))
+    csvfile.close()
 
-        # function calls to generate the six emotion lists from the emotion matrix
-        happyList=createEmotionList('happy',emotionsMatrix)
-        sadList=createEmotionList('sad',emotionsMatrix)
-        angerList=createEmotionList('anger',emotionsMatrix)
-        fearList=createEmotionList('fear',emotionsMatrix)
-        surpList=createEmotionList('surprise',emotionsMatrix)
-        disgList=createEmotionList('disgust',emotionsMatrix)
+    # function calls to generate the six emotion lists from the emotion matrix
+    happyList=createEmotionList('happy',emotionsMatrix)
+    sadList=createEmotionList('sad',emotionsMatrix)
+    angerList=createEmotionList('anger',emotionsMatrix)
+    fearList=createEmotionList('fear',emotionsMatrix)
+    surpList=createEmotionList('surprise',emotionsMatrix)
+    disgList=createEmotionList('disgust',emotionsMatrix)
+    #print(disgList)
         
-        # create the listener and connect to the Twitter stream
-        twitter_stream = tweepy.streaming.Stream(auth, Listener(api))
-
-        # filter the Twitter Stream using the largest bounding box to retrieve English tweets around the world (any english geotagged tweet)
-        twitter_stream.filter(locations=[-180,-90,180,90],languages=['en'])
-        
-    except KeyboardInterrupt:
+    while True:
+        try:
+            # create the listener and connect to the Twitter stream
+            twitter_stream = tweepy.streaming.Stream(auth, Listener(api))
+            # filter the Twitter Stream using the largest bounding box to retrieve tweets around the world (any geotagged tweet)
+            twitter_stream.filter(locations=[-180,-90,180,90],languages=['en'])
+        except KeyboardInterrupt:
         #user pressed ctrl+c -- get ready to exit the program
-        pass
+            break
+        except: 
+            continue
