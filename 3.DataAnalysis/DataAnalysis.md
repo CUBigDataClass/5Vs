@@ -8,6 +8,7 @@
     - mongodb
     - pymongo
     - NLTK
+    - senti_classifier
 
 #### Steps required:
 	* create a Twitter app and get access tokens
@@ -30,3 +31,9 @@
 
     * To run EmotionsClassifier.py or CountriesEmotion.py , no need to install mongodb on you local machine. Their code will use mongodb on mongolab to store data. To connect to the database , open your terminal and type:
             $ mongo ds019980.mlab.com:19980/worldemotion -u <dbuser> -p <dbpassword>
+
+    * download this Github library: https://github.com/kevincobain2000/sentiment_classifier/tree/master/src/senti_classifier
+
+    * Then install it: sudo python setup.py install
+    
+    * use instruction here if you found problems in installation: https://github.com/kevincobain2000/sentiment_classifier/issues/1 
