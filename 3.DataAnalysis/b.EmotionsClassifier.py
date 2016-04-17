@@ -1,3 +1,5 @@
+# This code reads the emotion words and emojis from the csv file, classifies tweets into emotions, then stores the tweets emotions in mongodb on AWS #
+
 # -*- coding: utf-8 -*-
 import tweepy
 import json

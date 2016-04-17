@@ -1,3 +1,6 @@
+# This code retrieves the data from any English geotagged tweets and apply the same sentiment analysis to categorize tweets into emotions.
+# Then from the extracted emotional tweets, store the country with its related emotion on mongolab
+
 # -*- coding: utf-8 -*-
 import tweepy
 import json
