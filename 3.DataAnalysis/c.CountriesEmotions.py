@@ -1,7 +1,7 @@
 # This code streams the data from English geotagged tweets and applies a set of sentiment analysis tools
 # to categorize tweets into six emotions and stores them in mongodb.
-# Then from the extracted emotional tweets, the code finds the common emotion for each country 
-# and stores the results on mongodb in order to visualize it on the website map.
+# Then from the extracted emotional tweets, the code finds the common emotion for each country in a periodic manner 
+# and stores the results on mongodb in order to visualize the results on the website map.
 
 # -*- coding: utf-8 -*-
 import tweepy
@@ -13,7 +13,7 @@ from nltk.stem.porter import PorterStemmer
 import operator
 import csv
 from senti_classifier import senti_classifier
-import time
+import time, threading
 
 # install python 2.7
 # install tweepy, $ sudo pip install tweepy
@@ -76,9 +76,9 @@ def classify_tweet(stemmed_tokens, sentences):
     print('fear count:',emotionCnt['Fear'])
     print('surprise count:',emotionCnt['Surprise'])
     print('disgust count:',emotionCnt['Disgust'])
-
+    
     max_emotion=max(emotionCnt.keys(), key=(lambda k: emotionCnt[k]))
-
+    
     if max(emotionCnt.values()) == 0 :
         tweet_emotion= 'Neutural' 
     elif pos_score >= neg_score:
@@ -109,7 +109,7 @@ class Listener(tweepy.StreamListener):
         self.db=client['worldemotion']  
         
         # MongoLab has user authentication
-        self.db.authenticate("***", "***")
+        self.db.authenticate("***", "***")   
 
     # this function gets called every time a new tweet is received on the stream
     def on_data(self, data):   
@@ -121,7 +121,7 @@ class Listener(tweepy.StreamListener):
         # get a list of lowercase text of the tweet text
         sentences = []
         sentences.append(lowerText) 
-        
+
         # get a list of tokens from the tweet text
         tokens=token_words(lowerText)
 
@@ -142,6 +142,9 @@ class Listener(tweepy.StreamListener):
                     'tweet_emotion' : tweet_emotion 
                 } 
             )
+
+    def mongoQuery(self):
+        print(time.ctime())
 
         # apply Mongodb aggregation query to find the count of each emotion for each country
         country_emotions=self.db.emotions.aggregate(
@@ -182,6 +185,9 @@ class Listener(tweepy.StreamListener):
             
         self.db.countryEmotion.insert({'country_emotion':result2})
 
+        # run a thread to execute this Mongodb aggregation query on the emotions collection every 300 seconds = 5 minutes
+        threading.Timer(300, self.mongoQuery).start()
+
     def on_error(self, status):
         print ("ERROR")
         print (status)
@@ -190,6 +196,7 @@ class Listener(tweepy.StreamListener):
     def on_timeout(self):
         print ("Timeout")
         return True         #To continue listening
+
 
 if __name__ == '__main__':
     # to create a matrix of emotion lists from EmotionsWords.csv file
@@ -204,11 +211,16 @@ if __name__ == '__main__':
     fearList=createEmotionList('fear',emotionsMatrix)
     surpList=createEmotionList('surprise',emotionsMatrix)
     disgList=createEmotionList('disgust',emotionsMatrix)
-        
+
+    lis=Listener(api)
+    
+    # run a thread to execute this Mongodb aggregation query on the emotions collection every 300 seconds = 5 minutes
+    threading.Timer(300, lis.mongoQuery).start()
+
     while True:
         try:
             # create the listener and connect to the Twitter stream
-            twitter_stream = tweepy.streaming.Stream(auth, Listener(api))
+            twitter_stream = tweepy.streaming.Stream(auth, lis)
             # filter the Twitter Stream using the largest bounding box to retrieve tweets around the world (any geotagged tweet)
             twitter_stream.filter(locations=[-180,-90,180,90],languages=['en'])
         except KeyboardInterrupt:
