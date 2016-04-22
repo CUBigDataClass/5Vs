@@ -3,6 +3,18 @@
 
 #####References 
 
+  To create this app , we used these great tutorials and github by DAVID TAIEB , we used the codes from the tutorial ,changed it, and  enhanced it to calculate the emotions, not for the hashtags, but for the tweets from all around the world  :
+  
+  * https://developer.ibm.com/clouddataservices/start-developing-with-spark-and-notebooks/
+  
+  * https://developer.ibm.com/clouddataservices/sentiment-analysis-of-twitter-hashtags/
+  
+  * https://developer.ibm.com/clouddataservices/2016/01/15/real-time-sentiment-analysis-of-twitter-hashtags-with-spark/
+  
+  * https://github.com/ibm-cds-labs/Spark-Twitter-Watson-Dashboard?cm_mc_uid=92467048697814597832778&cm_mc_sid_50200000=1461300272
+  
+
+
 #####License
 
 Copyright [2015] [IBM Cloud Data Services]
