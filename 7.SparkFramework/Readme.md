@@ -22,5 +22,5 @@
 
 #### Steps applied:
 	
-		* followed **ten** steps to build this app (please check the steps 1-10 on Spark folder).
+		 - followed **ten** steps to build this app (please check the steps 1-10 on Spark folder).
 	
