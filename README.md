@@ -16,12 +16,18 @@
 
 ## Project Tools:
 	* Data Source: Twitter Streaming API
-	* NoSQL Database: MongoDB
-	* Programming Language: Python 2.7
+	* Database: MongoDB
+	* Programming Language: Python 2.7 , Javascript , Scala
 	* Web Framework: Django
 	* Data processing Environment: Apache Spark
 	* Tone analysis : IBM Watson™ Tone Analyzer Service
 	* Real-time dashboard : Node.js
 	* Message bus Service : Message Hub Service powered by Apache Kafka
 	* Cloud Computing Services: AWS (Amazon Web Services) ,  Bluemix (IBM cloud data services)
+	
+## Project Required Libraries
+	* tweepy ($ sudo pip install tweepy)
+	* pymongo ($ sudo pip install pymongo)
+	* nltk ($ sudo pip install -U nltk)
+	* senti_classifier [download](https://github.com/kevincobain2000/sentiment_classifier/tree/master/src/senti_classifier) then ($ sudo python setup.py install)
 	
