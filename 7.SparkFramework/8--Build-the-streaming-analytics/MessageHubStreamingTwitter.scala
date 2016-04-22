@@ -1,3 +1,5 @@
+// this code from https://github.com/ibm-cds-labs/spark.samples/blob/master/streaming-twitter/src/main/scala/com/ibm/cds/spark/samples/MessageHubStreamingTwitter.scala
+
 package com.ibm.cds.spark.samples
 
 import scala.BigDecimal
