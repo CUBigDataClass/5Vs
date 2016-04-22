@@ -2,7 +2,7 @@
 
 #### How To Run The App
 
-   * I explian the steps of run our App by recording a video for the screen .
+   * I explianed the steps of run our App by recording a video for the screen .
     
    * since the video can't be uploaded here because of its larg size , I uploaded it on a dropbox . check the  link below :
 
