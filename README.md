@@ -19,7 +19,9 @@
 	* NoSQL Database: MongoDB
 	* Programming Language: Python 2.7
 	* Web Framework: Django
-	* Tone analysis : IBM Watson™ Tone Analyzer Service
 	* Data processing Environment: Apache Spark
+	* Tone analysis : IBM Watson™ Tone Analyzer Service
+	* Real-time dashboard : Node.js
+	* Message bus Service : Message Hub Service powered by Apache Kafka
 	* Cloud Computing Services: AWS (Amazon Web Services) ,  Bluemix (IBM cloud data services)
 	
