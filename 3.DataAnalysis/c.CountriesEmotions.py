@@ -1,4 +1,4 @@
-# This code streams the data from English geotagged tweets and applies a set of sentiment analysis tools
+# # This code streams the data from English geotagged tweets and applies a set of sentiment analysis tools
 # to categorize tweets into six emotions and stores them in mongodb.
 # Then from the extracted emotional tweets, the code finds the common emotion for each country in a periodic manner 
 # and stores the results on mongodb in order to visualize the results on the website map.
@@ -102,7 +102,6 @@ class Listener(tweepy.StreamListener):
         
         # create an instance of the Mongodb client with a connection to our database on Mongolab.
         client = pymongo.MongoClient("ds019980.mlab.com",19980)
-        
         #client = pymongo.MongoClient()
         
         # create a database called worldemotion
@@ -156,14 +155,9 @@ class Listener(tweepy.StreamListener):
         )
 
         # store the emotions result for each country with the current time in a new collection (countryEmotion) 
-        result1=[]
-        ctime=time.ctime()
-        result1.append({'current_time': ctime})
-            
+        result1=[]      
         for document in country_emotions:
             result1.append(document)
-            
-        self.db.countryEmotion.insert({'country_emotions':result1})
 
         # apply Mongodb aggregation query to find the common emotion for each country
         country_emotion=self.db.emotions.aggregate(
@@ -178,12 +172,19 @@ class Listener(tweepy.StreamListener):
         # store the common emotion result for each country with the current time in the collection (countryEmotion) 
         result2=[]
         ctime=time.ctime()
-        result2.append({'current_time': ctime})
-            
-        for document in country_emotion:
-            result2.append(document)
-            
+        result2.append({'current_time': ctime})  
+    
+        # update the code to add emtion field to each document that shows tha max emtion of each country
+        for document1 in country_emotion:
+            for document2 in result1:
+                if document1['country'] == document2['country'] and document1['maxEmotionCount'] == document2['emotion_count']:
+                    document1.update( {'emotion': document2['emotion']} )
+                    result2.append(document1)
+ 
         self.db.countryEmotion.insert({'country_emotion':result2})
+
+        # delete all tweets after geeting processing results
+        self.db.emotions.drop()
 
         # run a thread to execute this Mongodb aggregation query on the emotions collection every 300 seconds = 5 minutes
         threading.Timer(300, self.mongoQuery).start()
