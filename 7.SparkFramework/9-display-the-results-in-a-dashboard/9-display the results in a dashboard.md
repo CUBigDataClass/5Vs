@@ -2,9 +2,12 @@
 
 #### Tools required:
 
-   *  Cloud Foundry command line interface
+   * Cloud Foundry command line interface
    
    * glup 
+   
+   * Mozaik Dashboard Framework
+
 
 #### Steps required:
 
@@ -21,3 +24,11 @@
      * Deploy
     
       - call $ cf push from your terminal 
+
+     * Enter Message Hub Credentials in Notebook :
+
+        - Click the Twitter-Spark-Watson-Dashboard app from your bluemix dashboard.
+        
+        - Click Environment Variables.
+
+        - Copy and paste the 3 Message Hub credentials (api_key, user, and password), replacing the XXX’s in the  Scala notebook .
