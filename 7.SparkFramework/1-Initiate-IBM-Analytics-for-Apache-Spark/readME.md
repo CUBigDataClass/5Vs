@@ -11,7 +11,7 @@
 
 #### Steps required:
 
-    *sign up for a free trial in Bluemix or Login if you have an account.
+    * Sign up for a free trial in Bluemix or Login if you have an account.
   
     * Click Work with Data tabe On your Bluemix dashboard.
   
