@@ -29,5 +29,6 @@
 	* tweepy ($ sudo pip install tweepy)
 	* pymongo ($ sudo pip install pymongo)
 	* nltk ($ sudo pip install -U nltk)
-	* senti_classifier [download](https://github.com/kevincobain2000/sentiment_classifier/tree/master/src/senti_classifier) then ($ sudo python setup.py install)
+	* senti_classifier ( download from : https://github.com/kevincobain2000/sentiment_classifier/tree/master/src/senti_classifier) 
+		then ($ sudo python setup.py install)
 	
