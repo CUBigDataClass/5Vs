@@ -1,3 +1,5 @@
+// This code is from https://github.com/ibm-cds-labs/spark.samples/blob/master/streaming-twitter/src/main/scala/com/ibm/cds/spark/samples/dstream/KafkaInputDStream.scala?cm_mc_uid=92467048697814597832778&cm_mc_sid_50200000=1461300272
+
 package com.ibm.cds.spark.samples.dstream
 
 import scala.collection.JavaConversions._
