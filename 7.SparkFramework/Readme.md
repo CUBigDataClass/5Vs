@@ -1,7 +1,7 @@
 
 
 #### About this app 
-   Its a real-time streaming analytics for World Emotions ( analyze tweets tones from all over he world) 
+   Its a real-time streaming analytics for World Emotions ( analyze tweets' tones from all over he world) 
    
   
 #### App's Architecture
@@ -22,5 +22,5 @@
 
 #### Steps applied:
 	
-		 - followed **ten** steps to build this app (please check the steps 1-10 on Spark folder).
+		 * followed ten steps to build this app (please check the steps 1-10 on Spark folder).
 	
