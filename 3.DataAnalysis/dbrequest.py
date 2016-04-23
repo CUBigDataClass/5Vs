@@ -11,7 +11,7 @@ db=client['worldemotion']
 collection=db['emotions']
 
 # MongoLab has user authentication
-db.authenticate("5Vs", "bigdata2016")
+db.authenticate("***", "***")
 p = collection.find()
 
 
