@@ -18,7 +18,8 @@
 	* Data Source: Twitter Streaming API
 	* Database: MongoDB
 	* Programming Language: Python 2.7 , Javascript , Scala
-	* Web Framework: Django
+	* Web Framework: Django 1.9.2
+	* Visualization Tool: Mapbox
 	* Data processing Environment: Apache Spark
 	* Tone analysis : IBM Watson™ Tone Analyzer Service
 	* Real-time dashboard : Node.js
