@@ -1,3 +1,6 @@
+# This code stores a stream of tweets filtered by certain locations in mongodb on the cloud (MongoLab)
+
+
 # -*- coding: utf-8 -*-
 import tweepy
 import json
