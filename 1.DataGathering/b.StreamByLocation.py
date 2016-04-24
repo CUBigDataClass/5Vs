@@ -1,3 +1,5 @@
+# This code is used to get a stream of tweets filtered by certain locations
+
 import tweepy
 from tweepy import OAuthHandler
 from tweepy import Stream
