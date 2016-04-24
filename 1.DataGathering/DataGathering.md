@@ -1,5 +1,5 @@
 ### Data Gathering
-    Gets a stream of tweets contain the "Happy" word or filtered by certain locations
+    This directory has two programs. Thie first to get a stream of tweets contain the "Happy" word and the second to get tweets filtered by certain locations
 
 #### Tools required:
     - Twitter Streaming API
