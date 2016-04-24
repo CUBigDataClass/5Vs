@@ -1,3 +1,5 @@
+# This code storea a stream of tweets filtered by certain locations in local mongoDB
+
 import tweepy
 import json
 import pymongo

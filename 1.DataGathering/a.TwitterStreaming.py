@@ -1,3 +1,5 @@
+# Thie code gets a stream of tweets contains the "Happy" word 
+
 import tweepy
 from tweepy import OAuthHandler
 from tweepy import Stream
