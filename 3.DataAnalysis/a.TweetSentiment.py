@@ -1,5 +1,5 @@
 
-#This code applies some sentiment analysis to categorize each tweet into an emotion based on a demo of predefined lists of different emotions#
+#This code applies some sentiment analysis to categorize each tweet into an emotion based on a demo of predefined lists of different emotions words and emojis
 
 # -*- coding: utf-8 -*-
 import tweepy
