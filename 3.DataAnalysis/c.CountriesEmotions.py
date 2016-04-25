@@ -1,7 +1,7 @@
 # This code streams the data from English geotagged tweets and applies a set of sentiment analysis tools
-# to categorize tweets into six emotions and stores them in mongodb.
+# to categorize tweets into six emotions and stores them in mongolab.
 # Then from the extracted emotional tweets, the code finds the common emotion for each country in a periodic manner 
-# and stores the results on mongodb in order to visualize the results on the website map.
+# and stores the results on mongodb on the cloud (mlab) in order to visualize the results on the website map.
 
 # -*- coding: utf-8 -*-
 import tweepy
