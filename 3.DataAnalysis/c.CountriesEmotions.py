@@ -143,7 +143,7 @@ class Listener(tweepy.StreamListener):
     def mongoQuery(self):
         print(time.ctime())
 
-        # apply Mongodb aggregation query to find the count of each emotion for each country
+        # apply Mongodb aggregation query to find the count of each emotion in each country
         country_emotions=self.db.emotions.aggregate(
             [
                 {'$group': {'_id' : {'country': '$country_code', 'emotion': '$tweet_emotion'}, 'total' : {'$sum' : 1}}},
@@ -151,8 +151,6 @@ class Listener(tweepy.StreamListener):
                 {'$project' : {'country' : '$_id.country', 'emotion' : '$_id.emotion', 'emotion_count' : '$total', '_id' : 0}}
             ]
         )
-
-        # store the emotions result for each country with the current time in a new collection (countryEmotion) 
         result1=[]      
         for document in country_emotions:
             result1.append(document)
@@ -163,28 +161,28 @@ class Listener(tweepy.StreamListener):
                 {'$group': {'_id' : {'country': '$country_code', 'emotion': '$tweet_emotion'}, 'emotionCount' : {'$sum' : 1}}},
                 {'$group': {'_id' :'$_id.country', 'maxEmotionCount' : {'$max' : '$emotionCount'}}},
                 {'$sort': {'_id': 1}},
-                {'$project' : {'country' : '$_id', 'emotion' : '$_id.emotion', 'maxEmotionCount' : '$maxEmotionCount', '_id' : 0}}
+                {'$project' : {'country' : '$_id', 'maxEmotionCount' : '$maxEmotionCount', '_id' : 0}}
             ]
         )
-
-        # store the common emotion result for each country with the current time in the collection (countryEmotion) 
+        # add the current time in each result list
         result2=[]
         ctime=time.ctime()
         result2.append({'current_time': ctime})  
     
-        # update the code to add emtion field to each document that shows tha max emtion of each country
+        # add a field for the emtion name of tha max emotion of each country then add the document in the result2 list
         for document1 in country_emotion:
             for document2 in result1:
                 if document1['country'] == document2['country'] and document1['maxEmotionCount'] == document2['emotion_count']:
                     document1.update( {'emotion': document2['emotion']} )
                     result2.append(document1)
- 
+        
+        # store the common emotion result for each country with the current time in (countryEmotion) collection 
         self.db.countryEmotion.insert({'country_emotion':result2})
 
-        # delete all tweets after geeting processing results
+        # delete all existing tweets in the (emotions collection) after completing the analysis and getting their results
         self.db.emotions.drop()
 
-        # run a thread to execute this Mongodb aggregation query on the emotions collection every 300 seconds = 5 minutes
+        # run a thread to execute this Mongodb aggregation query on the (emotions collection) every 300 seconds = 5 minutes
         threading.Timer(300, self.mongoQuery).start()
 
     def on_error(self, status):
