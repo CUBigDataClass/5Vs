@@ -61,6 +61,8 @@ def classify_tweet(stemmed_tokens, sentences):
     pos_score, neg_score = senti_classifier.polarity_scores(sentences)
     print pos_score, neg_score
 
+    tweet_emotion= 'Neutural'
+
     emotionCnt={'Happy':0,'Sad':0,'Anger':0,'Fear':0,'Surprise':0,'Disgust':0}  
     
     for token in stemmed_tokens:
@@ -78,19 +80,15 @@ def classify_tweet(stemmed_tokens, sentences):
     print('disgust count:',emotionCnt['Disgust'])
     
     max_emotion=max(emotionCnt.keys(), key=(lambda k: emotionCnt[k]))
-    
+
     if max(emotionCnt.values()) == 0 :
         tweet_emotion= 'Neutural' 
-    elif pos_score >= neg_score:
+    elif pos_score > neg_score:
         if max_emotion =='Happy' or max_emotion=='Surprise':
             tweet_emotion = max_emotion
-        else:
-            tweet_emotion= 'Neutural' 
     else: 
-        if max_emotion =='Anger' or max_emotion=='Fear' or max_emotion=='Disgust' or max_emotion=='Sad' or max_emotion=='Surprise':
+        if max_emotion !='Happy':
             tweet_emotion = max_emotion
-        else:
-            tweet_emotion = 'Neutural' 
 
     return tweet_emotion
 
