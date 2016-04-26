@@ -24,9 +24,7 @@ urlpatterns = [
     url(r'^$', emotion_map.views.index, name='index'),
     url(r'^index$', emotion_map.views.index, name='index'),
     url(r'^about$', emotion_map.views.about, name="about"),
-    url(r'^US$', emotion_map.views.US, name="US"),
-    url(r'^Australia$', emotion_map.views.Australia, name="Australia"),
-    url(r'^UK$', emotion_map.views.UK, name="UK"),
+    url(r'^ibm$', emotion_map.views.ibm, name="ibm"),
     url(r'^db', emotion_map.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
 

@@ -1,0 +1,7 @@
+{"countries":[
+    {"ISO_A3":"ABW", "mood":"happy"},
+    {"ISO_A3":"AFG", "mood":"sad"},
+    {"ISO_A3":"ALB", "mood":"fear"},
+    {"ISO_A3":"MEX", "mood":"disgust"},
+    {"ISO_A3":"USA", "mood":"happy"}
+]}

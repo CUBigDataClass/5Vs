@@ -1,12 +1,31 @@
+
 {% extends "site-base.html" %}
 {% load staticfiles %}
 
 {% block content %}
 
-    <!-- Put your page content here! -->
 
-<div id='map'></div>
+<div id='map'>
+    <div class='legend-container'>
+  <div id='legend' class='legend'>
+    <h5>Emotions: </h5>
+      <p>{{ timestamp }}</p>
+  </div>
+
+</div>
 <script>
+     var layers =
+     [
+        ["Happy", "rgba(250, 203, 35, 0.4)"],
+        ["Sad", "rgba(16, 168, 202, 0.4)"],
+        ["Disgust", "rgba(55, 133, 19, 0.4)"],
+        ["Surprise", "rgba(255, 113, 25, 0.4)"],
+        ["Fear", "rgba(193, 66, 66, 0.4)"],
+	    ["Anger", "rgba(191, 63, 63, 0.4)"]
+
+     ];
+
+    var data = "{{ data }}"
    mapboxgl.accessToken = 'pk.eyJ1IjoiYnVzdW5raW05NiIsImEiOiJjaWx4ZDI1Y24wN3lxdmdrc3NkeHNqbzN5In0.oI1GbKPDTensdmbB-XcF_g';
     var map = new mapboxgl.Map
     ({
@@ -16,39 +35,63 @@
         zoom: 1.4
     });
 
+    var popup = new mapboxgl.Popup({
+    closeButton: false
+    });
+
+
+
     map.on('style.load', function()
      {
-        map.addSource("cities",
+        map.addSource("countries",
         {
             "type": "geojson",
-            "data": "{%static 'cities.geojson'%}"
+            "data": "{%static 'countries_with_moods2.geojson'%}"
         });
 
 
-     var layers =
-     [
-        ["happy", "yellow"],
-        ["sad", "blue"],
-        ["disgust", "green"],
-        ["surprise", "orange"],
-        ["fear", "red"]
-     ];
 
-   layers.forEach(function (layer, i)
+
+
+    var legend = document.getElementById('legend');
+    layers.forEach(function (layer, i)
    {
+
+
+            var item = document.createElement('div');
+            var key = document.createElement('span');
+            key.className = 'legend-key';
+            key.style.backgroundColor = layer[1];
+
+            var value = document.createElement('span');
+            value.id = 'legend-value-' + i;
+
+            item.appendChild(key);
+            item.appendChild(value);
+            legend.appendChild(item);
+
+            document.getElementById('legend-value-' + i).textContent = layer[0].toLocaleString();
+
            map.addLayer({
-                 "id": "cities-"+layer[0], // An id for this layer
-                 "type": "circle", // As a point layer, we need style a symbol for each point.
-                 "source": "cities", // The source layer we defined above
+                 "id": "countries-"+layer[0], // An id for this layer
+                 "type": "fill",
+                 "source": "countries",
+                 "layout": {},
                  "paint": {
-                     "circle-radius": 10,
-                     "circle-color": layer[1],
-                      "circle-opacity": 0.8,
+
+                    "fill-color": layer[1],
+                    "fill-outline-color": layer[1]
+
                  },
                  "filter": ["==", "mood", layer[0]]
                });
     });
+
 });
+
+
+
+setInterval(function(){location.reload(true);}, 5*60*1000); //reload every 5 minutes
 </script>
 
 
