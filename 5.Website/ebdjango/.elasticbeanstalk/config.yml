@@ -1,9 +1,9 @@
 branch-defaults:
   default:
-    environment: emotion-map
+    environment: emotionmap
     group_suffix: null
 global:
-  application_name: django-tutorial
+  application_name: emotion_map
   default_ec2_keyname: aws-5Vs
   default_platform: python2.7
   default_region: us-west-2
