@@ -1,4 +1,4 @@
-# [World Emotions](http://emotion-map.us-west-2.elasticbeanstalk.com/index) 
+# [World Emotions](http://emotionmap.jbfft96zai.us-west-2.elasticbeanstalk.com/index) 
 
 ## Project objective:
 	Real-time visualization of people emotions around the world through sentiment analysis of Twitter data
