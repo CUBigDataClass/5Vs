@@ -1,4 +1,3 @@
-
 {% extends "site-base.html" %}
 {% load staticfiles %}
 
@@ -14,14 +13,14 @@
 
 </div>
 <script>
-     var layers =
+    var layers =
      [
-        ["Happy", "rgba(250, 203, 35, 0.4)"],
+        ["Happy", "rgba(55, 133, 19, 0.4)"],
         ["Sad", "rgba(16, 168, 202, 0.4)"],
-        ["Disgust", "rgba(55, 133, 19, 0.4)"],
-        ["Surprise", "rgba(255, 113, 25, 0.4)"],
-        ["Fear", "rgba(193, 66, 66, 0.4)"],
-	    ["Anger", "rgba(191, 63, 63, 0.4)"]
+        ["Disgust", "rgba(127, 63, 191, 0.4)"],
+        ["Surprise", "rgba(205, 205, 29, 0.4)"],
+        ["Fear", "rgba(255, 113, 25, 0.4)"],
+        ["Anger", "rgba(191, 63, 63, 0.4)"]
 
      ];
 
@@ -56,8 +55,6 @@
     var legend = document.getElementById('legend');
     layers.forEach(function (layer, i)
    {
-
-
             var item = document.createElement('div');
             var key = document.createElement('span');
             key.className = 'legend-key';
@@ -72,6 +69,7 @@
 
             document.getElementById('legend-value-' + i).textContent = layer[0].toLocaleString();
 
+     
            map.addLayer({
                  "id": "countries-"+layer[0], // An id for this layer
                  "type": "fill",
