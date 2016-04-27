@@ -22,6 +22,9 @@
 
 	6. install NLTK, $ sudo pip install -U nltk
 
+	7. Amazon Linux instances are set to the UTC (Coordinated Universal Time) time zone by default. So, if you run your code on the server and want to change the time zone, you need to follow the instructions provided [here](Amazon Linux instances are set to the UTC (Coordinated Universal Time) time zone by default)
+
+
 
 
 
