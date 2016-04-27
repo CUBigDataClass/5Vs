@@ -1,6 +1,6 @@
 # [World Emotions](http://emotionmap.jbfft96zai.us-west-2.elasticbeanstalk.com/index) 
 
-![alt text](https://github.com/CUBigDataClass/5Vs/blob/master/4.Visualization/World%20Emotios%20Map.png "Logo Title Text 1")
+![alt text](https://github.com/CUBigDataClass/5Vs/blob/master/4.Visualization/WorldEmotionsMap.png "Logo Title Text 1")
 
 												(Denver Time Zone)
 ## Project objective:
