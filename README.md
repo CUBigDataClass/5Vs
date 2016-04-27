@@ -2,6 +2,7 @@
 
 ![alt text](https://github.com/CUBigDataClass/5Vs/blob/master/4.Visualization/World%20Emotios%20Map.png "Logo Title Text 1")
 
+												(Denver Time Zone)
 ## Project objective:
 	Real-time visualization of people emotions around the world through sentiment analysis of Twitter data
 
