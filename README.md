@@ -1,10 +1,7 @@
 # [World Emotions](http://emotionmap.jbfft96zai.us-west-2.elasticbeanstalk.com/index) 
 
-<<<<<<< HEAD
 ![alt text](https://github.com/CUBigDataClass/5Vs/blob/master/4.Visualization/WorldEmotion_map.png "Logo Title Text 1")
-=======
-![alt text](https://github.com/CUBigDataClass/5Vs/blob/master/4.Visualization/WorldEmotionsMap.png "Logo Title Text 1")										
->>>>>>> 60e0cfdc6e653e976cf7c36a10b1b17724ab52c5
+							
 
 ## Project objective:
 	Real-time visualization of people emotions around the world through sentiment analysis of Twitter data
